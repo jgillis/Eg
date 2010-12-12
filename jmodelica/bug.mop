@@ -1,0 +1,34 @@
+model hello
+		constant Real pi=3.14159265;
+		
+		parameter Real theta = 0.2;
+		parameter Real zeta=10;
+		parameter Real l1=20;
+		parameter Real l2=10;
+		parameter Real beta=atan(1/zeta);
+		
+		parameter Real n=5;
+		parameter Real T=1;
+		parameter Real sigmamax = tan(beta)*l1*n*sin(theta);
+		parameter Real eta = 0.5;
+		parameter Real sigma = eta * sigmamax;
+		
+		Real alpha;
+		Real psi;
+		Real dalpha;
+		Real dpsi;
+		
+		input Real ddpsi;
+	equation
+		der(alpha) = dalpha;
+		der(dalpha) = -((sin(beta)*dalpha*dpsi*l1*cos(psi-alpha)*sin(theta)+cos(beta)*dalpha*sigma)*zeta+dpsi^2*(sin(beta)*l1-sin(beta)*l2)*cos(psi-alpha)*sin(psi-alpha)*sin(theta)^2+(cos(beta)*ddpsi*l1*sin(psi-alpha)+(cos(beta)*dpsi^2*l1-cos(beta)*dalpha*dpsi*l1)*cos(psi-alpha))*sin(theta)+sin(beta)*ddpsi*l2*cos(theta)-sin(beta)*ddpsi*l2)/(cos(beta)*l1*zeta+sin(beta)*l2); // FCS.declare(ddalpha) 
+		der(psi) = dpsi;
+		der(dpsi) = ddpsi;
+end hello;
+
+model world
+	extends hello;
+	Real P=dalpha^2;
+end world;
+
+

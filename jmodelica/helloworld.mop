@@ -1,0 +1,11 @@
+model hello
+		parameter Real sigma=2;
+		Real x(start=1);
+	equation
+		der(x) = x;
+end hello;
+
+model world
+	extends hello;
+	Real y(nominal = sigma)=x^2*sigma;
+end world;

@@ -1,0 +1,74 @@
+model Dynabee
+		constant Real pi=3.14159265;
+		
+		parameter Real theta = 0.2;
+		parameter Real zeta=10;
+		parameter Real l1=20;
+		parameter Real l2=10;
+		parameter Real beta=atan(1/zeta);
+		
+		parameter Real n=5;
+		parameter Real T=1;
+		parameter Real sigmamax = tan(beta)*l1*n*sin(theta);
+		parameter Real eta = 0.5;
+		parameter Real sigma = eta * sigmamax;
+		
+		Real alpha;
+		Real psi;
+		Real dalpha;
+		Real dpsi;
+		
+		input Real ddpsi;
+	equation
+		der(alpha) = dalpha;
+		der(dalpha) = -((sin(beta)*dalpha*dpsi*l1*cos(psi-alpha)*sin(theta)+cos(beta)*dalpha*sigma)*zeta+dpsi^2*(sin(beta)*l1-sin(beta)*l2)*cos(psi-alpha)*sin(psi-alpha)*sin(theta)^2+(cos(beta)*ddpsi*l1*sin(psi-alpha)+(cos(beta)*dpsi^2*l1-cos(beta)*dalpha*dpsi*l1)*cos(psi-alpha))*sin(theta)+sin(beta)*ddpsi*l2*cos(theta)-sin(beta)*ddpsi*l2)/(cos(beta)*l1*zeta+sin(beta)*l2); // FCS.declare(ddalpha) 
+		der(psi) = dpsi;
+		der(dpsi) = ddpsi;
+end Dynabee;
+
+model Dynabee_init
+	extends Dynabee(alpha(start=alpha_0),dalpha(start=dalpha_0),psi(start=psi_0),dpsi(start=dpsi_0),T=2*pi/n);
+	parameter Real alpha_0=-pi+acos(eta);
+	parameter Real psi_0=0;
+	parameter Real dalpha_0=n;
+	parameter Real dpsi_0=n;
+end Dynabee_init;
+
+model Integration
+	extends Dynabee_init(alpha_0=-pi/2,psi_0 = 0,dalpha_0=n,dpsi_0=n);
+end Integration;
+
+model Steady
+	  extends Dynabee(alpha(start=-pi+acos(eta)));
+initial equation
+	  der(alpha) = n;
+	  der(psi) = n;
+	  der(dalpha) = 0;
+	  psi=0;
+end Steady;
+
+
+model DynabeePower
+	extends Dynabee_init;
+	//Real P(nominal=n^2*sigmamax*zeta^2)=dalpha^2*sigma*zeta^2;
+	Real P=dalpha^2;
+end DynabeePower;
+
+
+model DynabeeObjective
+	extends DynabeePower;
+	parameter Real ddpsi0 = n^2;
+	Real performance= P/T + 0.1*ddpsi^2/(ddpsi0^2)/T;
+end DynabeeObjective;
+
+optimization Dynabee_opt(objectiveIntegrand = -performance,startTime=0, finalTime=T)
+		extends DynabeeObjective_init(eta(free=true),ddpsi(free=true),n=5);
+	constraint
+		eta>=0.1;
+		eta<=0.5;
+		alpha(0)=alpha(finalTime)+2*pi;
+		dalpha(0)=dalpha(finalTime);
+		psi(0)=psi(finalTime)+2*pi;
+		dpsi(0)=dpsi(finalTime);
+		psi(0)=0;
+end Dynabee_opt;
