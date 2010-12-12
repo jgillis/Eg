@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg height="600" width="1200" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<g id="n6952609">
+		<g id="axis4474969" />
+		<g id="line0003247" />
+		<g id="bezier0754074" />
+		<g id="scatter5663447" />
+		<g id="axisn4538619">
+			<line style="stroke: black; stroke-width: 2" x1="30" x2="1170" y1="570" y2="570" />
+			<line style="stroke: black; stroke-width: 2" x1="30" x2="30" y1="30" y2="570" />
+			<line style="stroke: black; stroke-width: 2" x1="30" x2="30" y1="570" y2="573.75" />			<text transform="rotate(90,30,577.5)" x="30" y="577.5">
+			</text>			<text transform="rotate(90,7.59227876698477,577.5)" x="7.59227876698477" y="577.5">
+			</text>
+			<line style="stroke: black; stroke-width: 2" x1="344.494326079157" x2="344.494326079157" y1="570" y2="573.75" />			<text transform="rotate(90,344.494326079157,577.5)" x="344.494326079157" y="577.5">
+			</text>			<text transform="rotate(90,322.086604846142,577.5)" x="322.086604846142" y="577.5">
+			</text>
+			<line style="stroke: black; stroke-width: 2" x1="658.988652158314" x2="658.988652158314" y1="570" y2="573.75" />			<text transform="rotate(90,658.988652158314,577.5)" x="658.988652158314" y="577.5">
+			</text>			<text transform="rotate(90,636.580930925299,577.5)" x="636.580930925299" y="577.5">
+			</text>
+			<line style="stroke: black; stroke-width: 2" x1="973.482978237472" x2="973.482978237472" y1="570" y2="573.75" />			<text transform="rotate(90,973.482978237472,577.5)" x="973.482978237472" y="577.5">
+			</text>			<text transform="rotate(90,951.075257004457,577.5)" x="951.075257004457" y="577.5">
+			</text>
+			<line style="stroke: black; stroke-width: 2" x1="30" x2="26.25" y1="570" y2="570" />			<text x="0" y="570">
+			</text>			<text x="-86.5315311098853" y="570">
+			</text>
+		</g>
+		<g id="linen1679823">
+			<line style="fill: red; fill-opacity: 0.5; stroke: red" x1="30" x2="166.359498765684" y1="30" y2="110.397331206518" />
+			<line style="fill: red; fill-opacity: 0.5; stroke: red" x1="166.359498765684" x2="307.079984359955" y1="110.397331206518" y2="331.414578933018" />
+			<line style="fill: red; fill-opacity: 0.5; stroke: red" x1="307.079984359955" x2="447.585566077928" y1="331.414578933018" y2="320.844518766918" />
+			<line style="fill: red; fill-opacity: 0.5; stroke: red" x1="447.585566077928" x2="591.026429122402" y1="320.844518766918" y2="462.478472106159" />
+			<line style="fill: red; fill-opacity: 0.5; stroke: red" x1="591.026429122402" x2="736.04500473953" y1="462.478472106159" y2="536.237549268933" />
+			<line style="fill: red; fill-opacity: 0.5; stroke: red" x1="736.04500473953" x2="880.067681357483" y1="536.237549268933" y2="489.866716477086" />
+			<line style="fill: red; fill-opacity: 0.5; stroke: red" x1="880.067681357483" x2="1024.24760498851" y1="489.866716477086" y2="497.231005901755" />
+			<line style="fill: red; fill-opacity: 0.5; stroke: red" x1="1024.24760498851" x2="1170" y1="497.231005901755" y2="570" />
+		</g>
+		<g id="beziern4483573">
+			<path d="M30,30 Q118.861301227865,58.659499091303 166.359498765684,110.397331206518" style="fill: blue; fill-opacity: 0; stroke: blue" />
+			<path d="M166.359498765684,110.397331206518 Q287.81957604023,307.234184403901 307.079984359955,331.414578933018" style="fill: blue; fill-opacity: 0; stroke: blue" />
+			<path d="M307.079984359955,331.414578933018 Q377.332775218941,331.590115626258 447.585566077928,320.844518766918" style="fill: blue; fill-opacity: 0; stroke: blue" />
+			<path d="M447.585566077928,320.844518766918 Q457.826300852119,327.526564359984 591.026429122402,462.478472106159" style="fill: blue; fill-opacity: 0; stroke: blue" />
+			<path d="M591.026429122402,462.478472106159 Q660.496150657727,536.751238269515 736.04500473953,536.237549268933" style="fill: blue; fill-opacity: 0; stroke: blue" />
+			<path d="M736.04500473953,536.237549268933 Q808.056343048506,514.764094292911 880.067681357483,489.866716477086" style="fill: blue; fill-opacity: 0; stroke: blue" />
+			<path d="M880.067681357483,489.866716477086 Q946.92962840842,471.869711967694 1024.24760498851,497.231005901755" style="fill: blue; fill-opacity: 0; stroke: blue" />
+			<path d="M1024.24760498851,497.231005901755 Q1075.0176365047,515.013877379783 1170,570" style="fill: blue; fill-opacity: 0; stroke: blue" />
+		</g>
+		<g id="scattern8191731">
+			<circle cx="30" cy="630" r="3" style="fill: black; fill-opacity: 0.8" />
+			<circle cx="166.359498765684" cy="710.397331206518" r="3" style="fill: black; fill-opacity: 0.8" />
+			<circle cx="307.079984359955" cy="931.414578933018" r="3" style="fill: black; fill-opacity: 0.8" />
+			<circle cx="447.585566077928" cy="920.844518766918" r="3" style="fill: black; fill-opacity: 0.8" />
+			<circle cx="591.026429122402" cy="1062.47847210616" r="3" style="fill: black; fill-opacity: 0.8" />
+			<circle cx="736.04500473953" cy="1136.23754926893" r="3" style="fill: black; fill-opacity: 0.8" />
+			<circle cx="880.067681357483" cy="1089.86671647709" r="3" style="fill: black; fill-opacity: 0.8" />
+			<circle cx="1024.24760498851" cy="1097.23100590176" r="3" style="fill: black; fill-opacity: 0.8" />
+			<circle cx="1170" cy="1170" r="3" style="fill: black; fill-opacity: 0.8" />
+		</g>
+	</g><!-- 
+	Generated using the Perl SVG Module V2.49
+	by Ronan Oger
+	Info: http://www.roitsystems.com/
+ -->
+</svg>

@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<initialize name="Cannonball example">
+  <!--
+    This file sets up a cannonball example.
+  -->
+  <ubody unit="FT/SEC"> 500.0 </ubody>
+  <latitude unit="DEG">    0.0 </latitude>
+  <longitude unit="DEG"> -90.0 </longitude>
+  <theta unit="DEG">      60.0 </theta>
+  <psi unit="DEG">        40.0 </psi>
+  <altitude unit="FT">     1.0 </altitude>
+</initialize>

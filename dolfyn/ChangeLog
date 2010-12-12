@@ -1,0 +1,276 @@
+December, 2007: vs. 0.420
+=========================
+
+License changed to the Apache License, v. 2.0. The change allows
+others to distribute 'derived works' together with dolfyn.
+
+November, 2007: vs. 0.410
+=========================
+
+- "restart init" will check if Nbnd and Nfaces have changed
+  and act accordingly (ReadRestartField will only read Ncel items)
+  
+October, 2007: vs. 0.410
+========================
+
+- fixed some bugs introduced at the last stage of the may version
+  (the gradients were getting messed up)
+
+- fixed initialisation for transient run without restart (variables
+  now get the guessed value instead of simply a zero).
+  
+- "use,gauss" will give by default "use,gauss,2"
+
+- introduced some special ABL (atmosferic boundary layer)
+  features (a combination of UserInitialField, UserInlet 
+  and the command Use,FixABL...)
+  
+- Johan Jacobs extended the vtk output including particle tracks.
+
+May, 2007: vs. 0.400
+====================
+
+Starting with the implementation of alternative differencing 
+schemes (experimental features):
+
+- scheme-command: 
+
+  scheme uvw gamma 0.8
+  scheme keps gamma 0.8
+  scheme T gamma 0.8
+
+  selects gamma-scheme with 20% blending of UD (T also applies 
+  for Scalars)
+
+  choices are:
+  UD    standard upwind differencing
+  CD    central differencing (or CD1)
+  CD2   an alternative to CD1
+  LUD   linear upwind differencing
+  MIN   a scheme which blends UD, LUD and CD1
+  GAMMA a scheme which blends UD and CD1
+
+  default is still blending of a central differencing scheme (CD1) 
+  with standard upwind differencing (UD) (command 'gamma' in 
+  the din-file).
+  
+  please note that the higher order diffusive flux is still 
+  uncorrected (unfinished). also still looking for a method 
+  to correct the differencing schemes for (very) bad non-orthogonal
+  mesh connectivities.
+  
+- print-commands:
+  
+  print cells 5 100 5
+  print cells user
+  print file  some_file_name
+  
+  first call selects the cells to be printed, second one
+  selects a user subroutine UserPrintCell, finally the last 
+  call selects a file instead of the terminal. instead of cells
+  one can select wall boundaries as well.
+  
+- calculation of gradients:
+
+  use,gauss,2
+
+  selects gauss' method instead of the least squares method. the 
+  number set the number of passes (iterations).
+
+- math:
+
+  * can be used for the inlets and walls as well now
+  * case sensitivity removed
+    
+  example:
+  
+  title Leonard test semi Gamma/LS
+  scheme T gamma 1.0
+  use gauss
+
+  set T 273 + 500.
+  set rho 100000. / 287. / $T
+
+  vislam  36.4e-06
+  density $rho
+
+  set  angle 30
+  set  uoo 1.0
+  math degrees
+  math u cos $angle * $uoo
+  math v sin $angle * $uoo
+  
+  init,field,$u $v 0.0,0.0,0.0,0.0,$T
+  init,steps,0
+
+  boundary,1
+  inlet
+  $u $v 0.0
+  $rho
+  $T
+  inle
+  0.25 0.1
+
+  etc.
+  
+- preprocessor:
+
+  one small change (releasing memory/array TmpFace as
+  soon as possible)
+  
+December, 2006: vs 0.311
+========================
+
+Some modifications by Harry reversed.
+
+Main changes to the particle subroutines.
+
+In order to generate particles more general additional
+math commands have been introduced in the din-file: 
+- 'set' in order to define a variable
+- 'math' to do some math with a variable
+- 'gene' to generate particles
+
+Example 1:
+
+  set np 40
+
+  math deg
+  math a1 sin 45 * 2
+
+  use particles $np 
+
+  set vis 0.001e-6 * 1.e6
+
+  part         1 prop 1000 100.e-6
+  gene $np - 1 1 
+
+  part         1 init 1 0.0025 0.99 0.105  0.0  0.0 0.0
+  gene $np - 1 1,,,     0.01   0.00 0.000  0.0  0.0 0.0
+
+  VisLam $vis
+
+  ...
+  
+Example 2:
+
+  set x0  -0.0265
+  set y0   0.0456
+  set z0  -0.20
+
+  set x1  -0.005
+
+  set nr 8
+  set dx $x1 - $x0 / $nr
+  set dy 0.0
+  set dz 0.0
+
+  use particles $nr
+
+  part     1 prop 1000. 20.e-6
+  gene $nr - 1 1
+
+  part         1   init 1 0.5 * $dx + $x0 $y0 $z0  0.0  0.0 0.0
+  gene $nr - 1 1,,,          $dx          $dy $dz  0.0  0.0 0.0
+
+  ...
+
+Note that the syntax is quite simple from 'left to right' using
+a '$'-sign to fetch a variable. Thus the result of '0.5 * $dx + $x0' 
+(adds half dx to x0) is different to the result of '$x0 + 0.5 * $dx' 
+(adds 0.5 to x0 and multiplies the lot with dx)
+
+
+October, 2006: vs 0.311
+=======================
+
+Modifications by Harry.
+
+ - For CFD part, only a small modification according to
+   *Muzaferija's method* was carried out in subroutine
+   GradientPhi2. Then the code worked in really full-tetra meshes.
+
+ - To make output of simulations looks correctly, several
+   lines are added into InterpolateData to let dependent variables
+   at wall equal to zero.
+
+ - There are some changes in tecplt.f90.
+
+September, 2006: vs 0.310
+=========================
+
+First clean up of particle subroutines.
+
+June, 2006: vs 0.310
+====================
+
+This version includes:
+ - Various bug fixes and some clean up
+   Thanks to Bouke, Alfred, Harry
+ - Experimental feature of particles
+   in cooperation with Harry
+ - Tecplot output written by Harry
+ - dolfyn.cfg is read by the preprocessor as well
+   (suggestion by Bouke, includes scaling and file type)
+ - user solver interface added (request by osm)
+ - tested with ifort, g95 and compaq visual fortran 6.6a
+ 
+February, 2006: vs 0.310
+=========================
+
+Merged with the patches subroutines written by Bouke Tuinstra,
+see www.home.zonnet.nl/bouke_1/dolfyn
+
+Scalars activated; partly based on Bouke's work for the patches
+as this mechanism relies on scalars.
+
+December, 2005: vs 0.301
+=========================
+
+This version includes:
+ - Multiple outlets included
+ - FluxScalar cleaned up
+
+September, 2005: vs 0.300
+=========================
+
+This version includes:
+ - Various bug fixes (thanks Bouke) and clean up
+ - Enhanced output
+ - Heat transfer with a resistance R for walls (adapt your din-file!)
+ - New commands like: relax* and gamma* (for extra options)
+ - More OpenDX output
+ - Complete rework of the VTK-output
+
+June, 2005: vs 0.210
+=====================
+
+Abandoned (for now) the linear solver based on the improved
+"vanilla" BiCGStab(2) iterative method.
+
+See also: http://www.math.uu.nl/people/vorst and
+http://www.math.utwente.nl/~botchev
+
+December, 2004: vs 0.200
+========================
+
+Testing the implementation of the Hypre Scalable Linear Solvers.
+
+See also: http://www.llnl.gov/CASC/linear_solvers
+
+September, 2004: vs 0.100
+=========================
+
+First running version containing the basic options (thermal, turbulence,
+transient).
+
+The linear solver is based on Sparskit2 by Yousef Saad.
+
+See also: http://www-users.cs.umn.edu/~saad
+Testing against the direct solver MA27 from the HSL ARCHIVE.
+
+September, 2003: vs 0.000
+=========================
+
+Work on the preprocessor completed. Firsts tests with a transported
+scalar.

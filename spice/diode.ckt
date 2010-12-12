@@ -1,0 +1,10 @@
+HEADER
+
+V 1 0 5
+D 1 2 DMOD
+R 2 0 2k
+.MODEL DMOD D(n=4 IS=15uA BV=4)
+.END
+
+* print dc v(V) VJ(D) r(D) i(R) v(R) v(D) Z(2)
+* mod vs=10V

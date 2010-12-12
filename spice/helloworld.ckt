@@ -1,0 +1,7 @@
+*RESISTOR DRIVEN BY VOLTAGE SOURCE
+
+Vsupply 0 2 10
+R1 0 2 1k
+.print dc v(2)
+.dc
+.end

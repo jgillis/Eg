@@ -1,0 +1,131 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 0.8.4 ] */
+
+/* [wxMaxima: input   start ] */
+discr:(1-z^-1)/dT;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+N:5;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+load("diag");
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+equate(a,b):=map("=",a,b)$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+l2m(x):=transpose(matrix(x));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+q: makelist(concat(x,i),i,0,N-1)$Q:l2m(q)$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+qprev: makelist(concat(x,i,prev),i,0,N-1)$Qprev:l2m(q)$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+p: makelist(if i=N-1 then 1 else 0,i,0,N-1)$P:l2m(p)$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+ztrans(e):
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+depends(q,t);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+M:JF(0,N)$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Equations of motion for simple linear system
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+diff(Q,t)=M.'Q+P.epsilon;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Discretized
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+Q*discr=M.Q+P.epsilon;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+ev(expand(Q*discr),equate(q/z,qprev));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+equate(q/z,qprev);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+ev(9*a/b,expand,nouns,a/b=5);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+matchdeclare (var, lambda ([x], x(t)));
+
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+depends(q,t)
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+dependencies;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+is(x0(t)=dependencies[1]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+map(is,equate(q,q));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+foldl("or",[true,false]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+and([true,false]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+idenity(3);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+ident(N)/dt-M;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+invert(%);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+expm(M*dt);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+discr:2/dT*(1-z^-1)/(1+z^-1);
+
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+G: matrix([dt^4/12,dt^3/6,dt^2/2,dt,1]);
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

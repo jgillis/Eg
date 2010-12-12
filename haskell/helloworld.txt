@@ -1,0 +1,4 @@
+runhaskell ./hello.hs
+
+
+interactive interpreter ghci

@@ -1,0 +1,11 @@
+Python FA
+
+* inspect an object: import inspect; inspect.getmembers(object)
+* debug: pdb
+* _ : previous result
+* mayavi2 allows dragging of modules to the embedded python window. 
+explore(_)
+* Het is niet mogelijk om IPYTHON tegelijk thread-friendly (lees: GUI 
+steelt de STDIN van Ipython) te maken voor 
+mayavi2 (-wthread) en matplotlib (-pylab)
+* a,b,c ,= (1,2,3)
