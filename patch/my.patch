@@ -1,0 +1,20 @@
+diff -ru pre/foo.txt post/foo.txt
+--- pre/foo.txt	2011-05-06 13:55:21.630880336 +0200
++++ post/foo.txt	2011-05-06 13:56:53.250880306 +0200
+@@ -1,5 +1,5 @@
+ Dit is een test
+ 123
+-789
++xxx
+ 123
+ Waaw, geweldig
+diff -ru pre/kever/bar.txt post/kever/bar.txt
+--- pre/kever/bar.txt	2011-05-06 13:56:10.420880319 +0200
++++ post/kever/bar.txt	2011-05-06 13:57:16.960880299 +0200
+@@ -1,3 +1,3 @@
+ Als dat geen pluimpje verdient
+ Hoe moeilijk kan het zijn om slechte voorbeelden te verzinnen?
+-Zo moeilijk dus
++Zo moeilijk dus!
+Only in pre: koala
+Only in post: koalabeer
