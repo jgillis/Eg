@@ -1,0 +1,56 @@
+/* Automatically generated function. */
+#include <math.h>
+
+int n_in = 2;
+int n_out = 1;
+int in_nrow[] = {2,2};
+int in_ncol_[] = {1,2};
+int out_nrow[] = {2};
+int out_ncol_[] = {1};
+int init(int *n_in_, int *n_out_){
+*n_in_ = n_in, *n_out_ = n_out;
+return 0;
+}
+
+int getInputSize(int n_in, int *n_row, int *n_col){
+*n_row = in_nrow[n_in]; *n_col = in_ncol_[n_in];
+return 0;
+}
+
+int getOutputSize(int n_out, int *n_row, int *n_col){
+*n_row = out_nrow[n_out]; *n_col = out_ncol_[n_out];
+return 0;
+}
+
+int evaluate(const double** x, double** r){
+double i_2=x[0][0];
+double i_0=x[0][1];
+double i_10=x[1][0];
+double i_12=x[1][1];
+double i_1=x[1][2];
+double i_4=x[1][3];
+double i_3=(i_1*i_2);
+double i_5=(i_4*i_0);
+double i_11=(i_10*i_2);
+double i_13=(i_12*i_0);
+double i_6=(i_3+i_5);
+double i_14=(i_11+i_13);
+double i_8=(i_6*3.14159);
+double i_15=(i_14*3.14159);
+double i_9=(i_0+i_8);
+double i_16=(i_2+i_15);
+double i_17=(i_1*i_16);
+double i_18=(i_4*i_9);
+double i_23=(i_10*i_16);
+double i_24=(i_12*i_9);
+double i_19=(i_17+i_18);
+double i_25=(i_23+i_24);
+double i_21=(i_19*3.14159);
+double i_26=(i_25*3.14159);
+double i_22=(i_9+i_21);
+double i_27=(i_16+i_26);
+r[0][0]=i_27;
+r[0][1]=i_22;
+return 0;
+}
+
