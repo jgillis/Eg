@@ -1,0 +1,25 @@
+model simple
+		parameter Real a = 1.;
+		parameter Real b = 1.;
+		parameter Real x0 = 0.;
+		parameter Real y0 = 1.;
+		
+		Real x(start = x0);
+		Real y(start = y0);
+	equation
+		der(x) = x-b*y;
+		der(y) = y-a*x;
+		
+
+end simple;
+
+
+
+optimization opt(objective = sim.y(finalTime), startTime=0., finalTime=1.)
+  simple sim(b(min=-1,max=1),y0(free=true,initialGuess=0,min=-1,max=1),y(free=true),x(free=true));
+
+constraint
+	sim.x(0)=sim.x0;
+	sim.y(0)=sim.y0;
+	
+end opt;
