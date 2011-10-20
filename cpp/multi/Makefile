@@ -1,4 +1,7 @@
 all: run
+	ldd run
+	LD_LIBRARY_PATH="foo" ldd run
+	LD_LIBRARY_PATH="foo" ./run
 
 foo/foo.o: foo/foo.cpp
 	cd foo && gcc -c -fPIC foo.cpp -lstdc++
