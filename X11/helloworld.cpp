@@ -8,7 +8,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-int main(int argc, char ** argv){
+int hello() {
 	int screen_num, width, height;
 	unsigned long background, border;
 	Window win;
@@ -60,4 +60,8 @@ int main(int argc, char ** argv){
 			return 0;
 		}
 	}
+}
+
+int main(int argc, char ** argv){
+	return	hello();
 }
