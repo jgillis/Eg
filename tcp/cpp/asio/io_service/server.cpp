@@ -105,7 +105,17 @@ int main()
   {
     boost::asio::io_service io_service;
     tcp_server server(io_service);
-    io_service.run();
+    
+    // Method 1
+    
+    //io_service.run();
+    
+    // Method 2
+    int i = 0;
+    for (;;) {
+      io_service.poll();
+      std::cerr << "Foo"  << i++ << std::endl;
+    }
   }
   catch (std::exception& e)
   {
