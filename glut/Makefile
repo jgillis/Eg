@@ -1,4 +1,4 @@
 all:  helloworld
 
 helloworld: helloworld.c
-	c++ -lglut -lGLU -lGL helloworld.c -o helloworld
+	c++ helloworld.c -o helloworld -lglut -lGLU -lGL 
