@@ -1,4 +1,7 @@
 import time
+import os
+
+print os.environ
 
 f = file('helloworld.txt','w')
 for i in range(5):
