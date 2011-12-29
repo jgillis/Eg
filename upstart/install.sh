@@ -1,4 +1,10 @@
 #!/bin/bash
 
-cd /etc/init && sudo ln -s /home/jg/eg/upstart/helloworld.conf
-echo "Now reboot your computer"
+
+sudo cp helloworld.conf /etc/init
+# A symbolic link will not suffice
+
+
+# If this is the very first run, reboot your PC or use this:
+sudo initctl reload-configuration
+# If you are just updating helloworld.conf, it's done now. upstart will have seen the change and applied it.
