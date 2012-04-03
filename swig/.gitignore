@@ -1,0 +1,6 @@
+exceptions/helloworld.o
+exceptions/helloworld.py
+exceptions/_helloworld.so
+exceptions/helloworld_wrap.cxx
+exceptions/libhelloworld.so
+
