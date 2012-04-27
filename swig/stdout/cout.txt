@@ -1,0 +1,3 @@
+greeting on stdout c++
+greeting on stdout c
+greeting on stderr python
