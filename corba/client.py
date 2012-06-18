@@ -25,11 +25,13 @@ def explore(context, bindingNames = []):
         yield v
       # python 3.3: yield from explore(context.resolve(c.binding_name),bindingNames + c.binding_name)
   else:
-    yield bindingNames
+    yield (bindingNames,context)
     
+    
+
 print "All objects registered on the NameServer:"
-for namehierarchy in explore(context):
-  print "/".join(map(lambda x : x.id + "." + x.kind,namehierarchy))
+for namehierarchy, obj in explore(context):
+  print "/".join(map(lambda x : x.id + "." + x.kind,namehierarchy)) + "\t" + str(obj)
 
 # Resolve the name "test.my_context/ExampleEcho.Object"
 name = [CosNaming.NameComponent("test", "my_context"),
