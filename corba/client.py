@@ -13,6 +13,23 @@ rootContext = obj._narrow(CosNaming.NamingContext)
 if rootContext is None:
     print "Failed to narrow the root naming context"
     sys.exit(1)
+    
+
+context = rootContext    
+# Recursively list all directories
+
+def explore(context, bindingNames = []):
+  if isinstance(context,CosNaming._objref_NamingContext):
+    for c in context.list(100)[0]:
+      for v in explore(context.resolve(c.binding_name),bindingNames + c.binding_name):
+        yield v
+      # python 3.3: yield from explore(context.resolve(c.binding_name),bindingNames + c.binding_name)
+  else:
+    yield bindingNames
+    
+print "All objects registered on the NameServer:"
+for namehierarchy in explore(context):
+  print "/".join(map(lambda x : x.id + "." + x.kind,namehierarchy))
 
 # Resolve the name "test.my_context/ExampleEcho.Object"
 name = [CosNaming.NameComponent("test", "my_context"),
